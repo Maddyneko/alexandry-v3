@@ -1,0 +1,39 @@
+@font-face {
+	font-family: 'Nunito';
+	src: url(‘/public/webfonts/nunito.ttf’) format(‘truetype’)
+}
+
+/*Elements html*/
+body {
+	font-family: 'Nunito', sans-serif;
+}
+a {
+	cursor: pointer;
+}
+/* Menu principal*/
+#menu {
+	background-color: #226b80;
+	color: #CCC;
+	position: relative;
+	min-height: 50px;
+	margin-bottom: 20px;
+}
+#menu a {
+	color: #CCC;
+}
+
+.onglet {
+	float:left;
+	position: relative;
+	display: block;
+	padding:10px 15px;
+	line-height: 20px;
+	font-weight: 700;
+}
+
+.onglet_admin {
+	float: right;
+	padding:10px 15px;
+	font-size: 22px;
+	list-style: none;
+}
