@@ -22,7 +22,7 @@ class Pays extends Element
 		$this->id = $id;
 	}
 
-	public function getNompPays()
+	public function getNomPays()
 	{
 		return $this->nomPays;
 	}

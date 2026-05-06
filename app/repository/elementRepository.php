@@ -6,9 +6,10 @@ class elementrepository
     protected $nomTable;
     protected $filtres;
 
-    public function __construct($bdd)
+    public function __construct($bdd, $nomTable)
     {
         $this->bdd = $bdd;
+        $this->nomTable = $nomTable;
     }
 
     public function getbdd()
@@ -53,4 +54,15 @@ class elementrepository
 
         return $this->bdd->qfetch($requete);
     }
+
+	public function selectElements()
+	{
+		$requete = "SELECT * "
+			. "FROM " . $this->getNomTable() . " "
+			. "WHERE 1 = 1 "
+			. $this->filtres
+		;
+		debug($requete);
+		return $this->bdd->qfetch($requete);
+	}
 }

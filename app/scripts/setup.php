@@ -22,14 +22,17 @@ function checkBdd()
 	// Check existence tables
 	$requeteTables = "SHOW TABLES FROM " . DB_NOMBASE;
 	$datas = $bdd->qfetch($requeteTables);
-
-	if (!in_array('film_t', $datas[0])) {
+	$tables = null;
+	foreach($datas as $table) {
+		$tables[] = $table[0];
+	}
+	if (!in_array('film_t', $tables)) {
 		initialiserBddFilm();
 	}
-	if (!in_array('pays_t', $datas[0])) {
+	if (!in_array('pays_t', $tables)) {
 		initialiserBddPays();
 	}
-	if (!in_array('personne_t', $datas[0])) {
+	if (!in_array('personne_t', $tables)) {
 		initialiserBddPersonne();
 	}
 
@@ -49,6 +52,7 @@ function initialiserBddFilm()
 
 function initialiserBddPays()
 {
+	debug("initialiserBddPays");
 	initialiserBdd(file_get_contents(CHEMIN_DOSSIER.'/app/migrations/create-table-pays.sql'));
 }
 

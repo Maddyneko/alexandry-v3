@@ -51,6 +51,11 @@ class SPDO
 		return $this->pdoInstance->quote($datas);
 	}
 
+	public function lastInsertId()
+	{
+		return $this->pdoInstance->lastInsertId();
+	}
+
 	public function query($requete)
 	{
 		try {
@@ -64,7 +69,9 @@ class SPDO
 	public function qfetch($requete)
 	{
 		try {
-			return $this->pdoInstance->query($requete)->fetchAll();
+			$datas =  $this->pdoInstance->query($requete)->fetchAll();
+
+			return $datas;
 		} catch (PDOException $e) {
 			$this->erreur = $e->getMessage();
 			$this->codeErreur = $e->getCode();
