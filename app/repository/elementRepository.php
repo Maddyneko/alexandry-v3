@@ -5,11 +5,13 @@ class elementrepository
     protected $bdd;
     protected $nomTable;
     protected $filtres;
+	protected $order;
 
-    public function __construct($bdd, $nomTable)
+    public function __construct($bdd, $nomTable, $order)
     {
         $this->bdd = $bdd;
         $this->nomTable = $nomTable;
+		$this->order = $order;
     }
 
     public function getbdd()
@@ -61,6 +63,7 @@ class elementrepository
 			. "FROM " . $this->getNomTable() . " "
 			. "WHERE 1 = 1 "
 			. $this->filtres
+			. ($this->order != null ? "ORDER BY " . $this->order : "")
 		;
 
 		return $this->bdd->qfetch($requete);

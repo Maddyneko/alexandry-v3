@@ -1,8 +1,13 @@
 <?php
 require_once CHEMIN_DOSSIER . '/app/handler/paysHandler.php';
+require_once CHEMIN_DOSSIER . '/app/handler/filmHandler.php';
+
 require_once CHEMIN_DOSSIER . '/app/interfaces/paysInterface.php';
+require_once CHEMIN_DOSSIER . '/app/interfaces/filmInterface.php';
 require_once CHEMIN_DOSSIER . '/app/modele/pays.class.php';
+require_once CHEMIN_DOSSIER . '/app/modele/film.class.php';
 require_once CHEMIN_DOSSIER . '/app/repository/paysRepository.php';
+require_once CHEMIN_DOSSIER . '/app/repository/filmRepository.php';
 
 if (empty($_GET['id'])) {
 	header('Location: ' . NOM_DOMAINE . "/?type=pays");
@@ -20,14 +25,25 @@ if (empty($_GET['id'])) {
         $adresseFichier = "public/images/pays/" . $pays['id'] . ".png";
         if (file_exists($adresseFichier)) { ?>
             <div class="element_image");">
-                <img src = <?php echo $adresseFichier; ?> width="200" />
+                <img src = "<?php echo $adresseFichier; ?>" width="200" />
             </div>
         <?php } ?>
 	<div class="element_titre">
 		<h1><?php echo $pays['nomPays'];?></h1>
 	</div>
-
+    <div class="sous_liste_elements">
+        <p>Films <span class="badge"><?php echo count($pays['films']); ?></span></p>
+        <?php foreach($pays['films'] as $film) { ?>
+                <div class="liste_element">
+                    <div class="liste_element_panel">
+                        <div class="liste_element_image" style="background-image: url('public/images/film/<?php echo $film['id'] ?>.png');"></div>
+                        <a href="<?php echo NOM_DOMAINE; ?>/?type=pays&vue=element&id=<?php echo $film['id'];?>"><?php echo $film['titreFilm'];?></a>
+                    </div>
+                </div>
+        <?php } ?>
+    </div>
 </div>
+
 <div class="action_element">
 	<div class="bouton_action">
 		<a href="<?php echo NOM_DOMAINE; ?>/?type=pays&vue=edit&id=<?php echo $pays['id'];?>">

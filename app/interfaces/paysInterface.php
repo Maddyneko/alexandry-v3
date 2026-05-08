@@ -22,4 +22,10 @@ class PaysInterface
 
 		return $paysView;
 	}
+
+	public function addFilmsToView($paysView, $films)
+	{
+		$paysView['films'] = $films;
+		return $paysView;
+	}
 }

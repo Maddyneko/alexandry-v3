@@ -46,9 +46,25 @@ a {
 	height:25px;
 }
 
+.badge {
+	background-color:#fabc74;
+	display: inline-block;
+	min-width: 10px;
+	padding: 3px 7px;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 1;
+	color: #fff;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	border-radius: 10px;
+}
+
 .contenu {
 	width:100%;
 }
+
 .liste_element {
 	width: 25%;
 	float:left;
@@ -107,6 +123,23 @@ a {
 	padding-top: 2px;
 	float: right;
 	margin:15px;
+}
+
+.sous_liste_elements {
+	width: 90%;
+	float: left;
+	margin-top:50px;
+}
+
+.sous_liste_elements h2{
+	margin-bottom:15px;
+
+}
+
+.sous_liste_elements .liste_element{
+	width: 13%;
+	font-size: 12px;
+	margin-top:15px;
 }
 
 .contenu_form {

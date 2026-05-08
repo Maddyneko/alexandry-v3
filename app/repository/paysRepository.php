@@ -5,7 +5,7 @@ class paysRepository extends elementrepository
 {
     public function __construct($bdd)
     {
-        parent::__construct($bdd, 'pays_t');
+        parent::__construct($bdd, 'pays_t', 'nomPays');
     }
 
     public function getPaysParNom($nomPays)

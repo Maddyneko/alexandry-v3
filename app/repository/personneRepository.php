@@ -4,7 +4,7 @@ class personneRepository extends elementrepository
 {
     public function __construct($bdd)
     {
-        parent::__construct($bdd, 'personne_t');
+        parent::__construct($bdd, 'personne_t', 'nomPersonne');
     }
 
     public function selectPersonnes()

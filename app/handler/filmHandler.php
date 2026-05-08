@@ -26,6 +26,26 @@ class filmHandler {
 		$filmRepository->cleanDateFilms();
 	}
 
+	public function getFilmsPays($bdd, $idPays)
+	{
+		$filmRepository = new FilmRepository($bdd);
+		$datasFilms = $filmRepository->getFilmsParIdPays($idPays);
+
+		return $this->miseEnFormeFilmAffichage($datasFilms);
+
+	}
+
+	public function miseEnFormeFilmAffichage($datasFilms)
+	{
+		$filmInterface = new FilmInterface();
+		$films = [];
+		foreach ($datasFilms as $datasFilm) {
+			$filmObj = $filmInterface->fromSqlToObject($datasFilm);
+			$films[] = $filmInterface->fromObjectToView($filmObj);
+		}
+		return $films;
+	}
+
 	public function getFilmsAffichage($bdd)
 	{
 		$filmRepository = new FilmRepository($bdd);

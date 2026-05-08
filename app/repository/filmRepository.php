@@ -5,8 +5,14 @@ class filmRepository extends elementrepository
 
     public function __construct($bdd)
     {
-        parent::__construct($bdd, 'film_t');
+        parent::__construct($bdd, 'film_t', 'titreFilm');
     }
+
+	public function getFilmsParIdPays($idPays)
+	{
+		$this->filtres = "AND idPays = " . (int) $idPays . " ";
+		return $this->selectFilms();
+	}
 
     public function selectFilms()
     {

@@ -35,6 +35,10 @@ class PaysHandler {
 		$paysObj = $paysInterface->fromSqlToObject($datasPays[0]);
 		$pays = $paysInterface->fromObjectToView($paysObj);
 
+		$filmHandler = new FilmHandler();
+		$films = $filmHandler->getFilmsPays($bdd, $idPays);
+		$pays = $paysInterface->addFilmsToView($pays, $films);
+
 		return $pays;
 	}
 
