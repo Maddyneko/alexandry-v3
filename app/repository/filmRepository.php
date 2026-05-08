@@ -13,6 +13,21 @@ class filmRepository extends elementrepository
         return parent::selectElements();
     }
 
+	public function selectFilmsDetail()
+	{
+		$paysRepository = new PaysRepository($this->bdd);
+		$personneRepository = new PersonneRepository($this->bdd);
+		$requete = "SELECT * "
+			."FROM " . $this->getNomTable() . " F "
+			. "LEFT JOIN " . $paysRepository->getNomTable() . " P "
+			. "ON F.idPays = P.id "
+			. "LEFT JOIN " . $personneRepository->getNomTable() . " PE "
+			. "ON F.idRealisateur = PE.id "
+			;
+		return $this->bdd->qfetch($requete);
+
+	}
+
 	public function insertFilm($film)
 	{
 		$idFilm = null;

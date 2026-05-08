@@ -38,12 +38,6 @@ function checkBdd()
 
 }
 
-function debug($datas)
-{
-	echo '<pre>';
-	print_r($datas);
-	echo '</pre>';
-}
 
 function initialiserBddFilm()
 {

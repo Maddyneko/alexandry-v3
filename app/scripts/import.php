@@ -1,5 +1,8 @@
 <?php
 require_once '../config/config.php';
+require_once CHEMIN_DOSSIER . '/app/tools/utils.php';
+require_once CHEMIN_DOSSIER . '/app/tools/validation.php';
+
 require_once CHEMIN_DOSSIER . '/app/modele/film.class.php';
 require_once CHEMIN_DOSSIER . '/app/modele/pays.class.php';
 require_once CHEMIN_DOSSIER . '/app/modele/personne.class.php';
@@ -24,10 +27,6 @@ importFilms($bdd, $listePersonnes, $listePays, $listeFilms);
 $filmHandler = new FilmHandler();
 $filmHandler->nettoyerBaseFilm($bdd);
 
-function cleanDonnee($valeur)
-{
-    return trim($valeur);
-}
 
 function importPays($bdd, $listeFilms)
 {

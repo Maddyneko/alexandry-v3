@@ -14,6 +14,12 @@ class paysRepository extends elementrepository
         return $this->selectPays();
     }
 
+	public function getPaysParId($id)
+	{
+		$this->filtres = "AND id = " . (int) $id . " ";
+		return $this->selectPays();
+	}
+
     public function selectPays()
     {
       return parent::selectElement();
@@ -40,4 +46,15 @@ class paysRepository extends elementrepository
 
 		return $idPays;
     }
+
+	public function updatePays($pays)
+	{
+		if ($pays->getId() != null && $pays->getNomPays() != null) {
+			$requete = "UPDATE " . $this->getNomTable() . " SET "
+				. "nomPays = " . $this->bdd->quote($pays->getNomPays()) . " "
+				. "WHERE id = " . (int) $pays->getId()
+				;
+			$this->bdd->query($requete);
+		}
+	}
 }

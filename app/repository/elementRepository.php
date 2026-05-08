@@ -62,7 +62,7 @@ class elementrepository
 			. "WHERE 1 = 1 "
 			. $this->filtres
 		;
-		debug($requete);
+
 		return $this->bdd->qfetch($requete);
 	}
 }

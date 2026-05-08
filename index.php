@@ -1,5 +1,8 @@
 <?php
     require_once('app/config/config.php');
+    require_once('app/tools/utils.php');
+    require_once('app/tools/validation.php');
+
     $type = $_GET['type'] ?? 'films';
     $vue = $_GET['vue'] ?? 'all';
 ?>
@@ -17,8 +20,8 @@
         <nav id="menu">
             <div>
                 <ul>
-                    <li class="logo onglet">Ranganathan</li>
-                    <li class="onglet"><a><i class="fas fa-tag"></i> Global</a></li>
+                    <li class="logo onglet">Alexandrie</li>
+                    <li class="onglet"><a href=<?php echo NOM_DOMAINE; ?>/?type=pays><i class="fas fa-tag"></i> Global</a></li>
                     <li class="onglet"><a><i class="fas fa-user"></i> Personnes</a></li>
                     <li class="onglet"><a><i class="fas fa-film"></i> Films</a></li>
                     <li class="onglet"><a><i class="fas fa-book"></i> Livres</a></li>

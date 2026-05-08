@@ -25,4 +25,14 @@ class filmHandler {
 		$filmRepository = new FilmRepository($bdd);
 		$filmRepository->cleanDateFilms();
 	}
+
+	public function getFilmsAffichage($bdd)
+	{
+		$filmRepository = new FilmRepository($bdd);
+		$datasFilms = $filmRepository->selectFilmsDetail();
+		$films = [];
+		foreach ($datasFilms as $datasFilm) {
+
+		}
+	}
 }

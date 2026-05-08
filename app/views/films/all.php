@@ -1,1 +1,4 @@
-all.php
+<?php
+    $filmHandler = new FilmHandler();
+
+?>
