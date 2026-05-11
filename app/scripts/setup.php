@@ -22,7 +22,7 @@ function checkBdd()
 	// Check existence tables
 	$requeteTables = "SHOW TABLES FROM " . DB_NOMBASE;
 	$datas = $bdd->qfetch($requeteTables);
-	$tables = null;
+	$tables = [];
 	foreach($datas as $table) {
 		$tables[] = $table[0];
 	}
