@@ -1,4 +1,5 @@
 <?php
+require_once CHEMIN_DOSSIER . '/app/repository/elementRepository.php';
 
 class filmRepository extends elementrepository
 {

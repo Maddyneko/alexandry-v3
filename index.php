@@ -23,7 +23,7 @@
                     <li class="logo onglet">Alexandrie</li>
                     <li class="onglet"><a href=<?php echo NOM_DOMAINE; ?>/?type=pays><i class="fas fa-tag"></i> Global</a></li>
                     <li class="onglet"><a><i class="fas fa-user"></i> Personnes</a></li>
-                    <li class="onglet"><a><i class="fas fa-film"></i> Films</a></li>
+                    <li class="onglet"><a href=<?php echo NOM_DOMAINE; ?>/?type=film><i class="fas fa-film"></i> Films</a></li>
                     <li class="onglet"><a><i class="fas fa-book"></i> Livres</a></li>
                     <li class="onglet"><a><i class="fas fa-book-open"></i> Bds</a></li>
                 </ul>

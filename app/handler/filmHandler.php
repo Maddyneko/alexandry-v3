@@ -50,9 +50,8 @@ class filmHandler {
 	{
 		$filmRepository = new FilmRepository($bdd);
 		$datasFilms = $filmRepository->selectFilmsDetail();
-		$films = [];
-		foreach ($datasFilms as $datasFilm) {
+		$films = $this->miseEnFormeFilmAffichage($datasFilms);
 
-		}
+		return $films;
 	}
 }

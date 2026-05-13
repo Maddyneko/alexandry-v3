@@ -37,7 +37,7 @@ if (empty($_GET['id'])) {
                 <div class="liste_element">
                     <div class="liste_element_panel">
                         <div class="liste_element_image" style="background-image: url('public/images/film/<?php echo $film['id'] ?>.png');"></div>
-                        <a href="<?php echo NOM_DOMAINE; ?>/?type=pays&vue=element&id=<?php echo $film['id'];?>"><?php echo $film['titreFilm'];?></a>
+                        <a href="<?php echo NOM_DOMAINE; ?>/?type=film&vue=element&id=<?php echo $film['id'];?>"><?php echo $film['titreFilm'];?></a>
                     </div>
                 </div>
         <?php } ?>

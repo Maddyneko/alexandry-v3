@@ -1,4 +1,0 @@
-<?php
-    $filmHandler = new FilmHandler();
-
-?>
