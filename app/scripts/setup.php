@@ -24,8 +24,9 @@ function checkBdd()
 	$datas = $bdd->qfetch($requeteTables);
 	$tables = [];
 	foreach($datas as $table) {
-		$tables[] = $table[0];
+		$tables[] = $table[array_key_first($table)];
 	}
+	
 	if (!in_array('film_t', $tables)) {
 		initialiserBddFilm();
 	}
@@ -46,7 +47,6 @@ function initialiserBddFilm()
 
 function initialiserBddPays()
 {
-	debug("initialiserBddPays");
 	initialiserBdd(file_get_contents(CHEMIN_DOSSIER.'/app/migrations/create-table-pays.sql'));
 }
 

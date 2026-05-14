@@ -69,7 +69,7 @@ class SPDO
 	public function qfetch($requete)
 	{
 		try {
-			$datas =  $this->pdoInstance->query($requete)->fetchAll();
+			$datas = $this->pdoInstance->query($requete)->fetchAll(PDO::FETCH_ASSOC);
 
 			return $datas;
 		} catch (PDOException $e) {

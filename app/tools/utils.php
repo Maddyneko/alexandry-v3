@@ -12,3 +12,8 @@ function debug($datas)
 	print_r($datas);
 	echo '</pre>';
 }
+
+function formatDate($dateSql)
+{
+	return date('d/m/Y', strtotime($dateSql));
+}

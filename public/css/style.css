@@ -73,6 +73,9 @@ a {
 	padding-right: 15px;
 	padding-left: 15px;
 }
+.liste_element_long {
+	width: 20%;
+}
 
 .liste_element_panel {
 	height: 200px;
@@ -85,6 +88,9 @@ a {
 	border: 1px solid transparent;
 	border-color: #ddd;
 	box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.liste_element_panel_long {
+	height: 300px;
 }
 
 .liste_element_image {
@@ -159,6 +165,36 @@ a {
 	width: 100%;
 }
 
+.film .element_titre {
+	width:80%;
+	float:left;
+}
+
+.film .element_details {
+	float:left;
+	width: 20%;
+	text-align: right;
+}
+
+.film .element_sous_titre {
+	float:left;
+	width: 80%;
+	font-style: italic;
+	font-size: 24px;
+	font-weight: 400;
+}
+
+.film .element_detail_left {
+	float: left;
+	width: 70%;
+}
+.film .ligne_2 {
+	width: 100%;
+}
+
+.film .element_detail_right {
+	float: right;
+}
 .form_element {
 	padding-bottom:15px;
 }

@@ -54,4 +54,19 @@ class filmHandler {
 
 		return $films;
 	}
+
+	public function getFilmAffichage($bdd, $idFilm)
+	{
+		$filmRepository = new FilmRepository($bdd);
+		$datasFilm = $filmRepository->getFilmParId($idFilm);
+		$filmInterface = new FilmInterface();
+		$filmObj = $filmInterface->fromSqlToObject($datasFilm[0]);
+		$film = $filmInterface->fromObjectToView($filmObj);
+
+		$paysHandler = new PaysHandler();
+		$pays = $paysHandler->getPaysAffichage($bdd, $filmObj->getIdPays());
+		$film = $filmInterface->addPaysToView($film, $pays);
+
+		return $film;
+	}
 }

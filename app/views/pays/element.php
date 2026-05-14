@@ -24,7 +24,7 @@ if (empty($_GET['id'])) {
         <?php
         $adresseFichier = "public/images/pays/" . $pays['id'] . ".png";
         if (file_exists($adresseFichier)) { ?>
-            <div class="element_image");">
+            <div class="element_image">
                 <img src = "<?php echo $adresseFichier; ?>" width="200" />
             </div>
         <?php } ?>

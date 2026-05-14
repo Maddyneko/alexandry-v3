@@ -15,10 +15,21 @@ class filmRepository extends elementrepository
 		return $this->selectFilms();
 	}
 
+	public function getFilmParId($id)
+	{
+		$this->filtres = "AND id = " . (int) $id . " ";
+		return $this->selectFilm();
+	}
+
     public function selectFilms()
     {
         return parent::selectElements();
     }
+
+	public function selectFilm()
+	{
+		return parent::selectElement();
+	}
 
 	public function selectFilmsDetail()
 	{
@@ -30,9 +41,11 @@ class filmRepository extends elementrepository
 			. "ON F.idPays = P.id "
 			. "LEFT JOIN " . $personneRepository->getNomTable() . " PE "
 			. "ON F.idRealisateur = PE.id "
-			;
-		return $this->bdd->qfetch($requete);
+			. ($this->order != null ? "ORDER BY " . $this->order : "")
 
+		;
+
+		return $this->bdd->qfetch($requete);
 	}
 
 	public function insertFilm($film)
@@ -49,7 +62,7 @@ class filmRepository extends elementrepository
 				. $this->bdd->quote($film->getTitreFilm()) . " "
 				. ", " . (int) $film->getIdPays()
 				. ", " . (int) $film->getIdRealisateur()
-				. ($film->getTitreFilmVo() != null ? "," . $this->bdd->quote($film->getTitreFilm()) . " " : "")
+				. ($film->getTitreFilmVo() != null ? "," . $this->bdd->quote($film->getTitreFilmVO()) . " " : "")
 				. ($film->getDateFilm() != null ? "," .  $this->bdd->quote(date('Y-m-d', strtotime($film->getDateFilm()))) . " " : "")
 				. ") "
 			;
