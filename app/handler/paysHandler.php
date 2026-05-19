@@ -1,11 +1,14 @@
 <?php
+require_once CHEMIN_DOSSIER . '/app/handler/elementHandler.php';
 
-class PaysHandler {
+class PaysHandler extends ElementHandler {
     public function creerPaysBase($bdd, $nomPays) {
         $idPays = null;
         if ($nomPays !== null) {
             $pays = new Pays();
             $pays->setNompPays($nomPays);
+            $slug = slugify($nomPays);
+            $pays->setSlug($slug);
             $paysRepository = new PaysRepository($bdd);
             $idPays = $paysRepository->insertPays($pays);
         }
@@ -20,8 +23,7 @@ class PaysHandler {
 		$paysInterface = new PaysInterface();
 		$payss = [];
 		foreach ($datasPayss as $datasPays) {
-			$paysObj = $paysInterface->fromSqlToObject($datasPays);
-			$payss[] = $paysInterface->fromObjectToView($paysObj);
+			$payss[] = $paysInterface->fromSqlToObject($datasPays);
 		}
 
 		return $payss;
@@ -29,31 +31,42 @@ class PaysHandler {
 
 	public function getPaysAffichage($bdd, $idPays)
 	{
-		$paysRepository = new PaysRepository($bdd);
-		$datasPays = $paysRepository->getPaysParId($idPays);
-		$paysInterface = new PaysInterface();
-		$paysObj = $paysInterface->fromSqlToObject($datasPays[0]);
-		$pays = $paysInterface->fromObjectToView($paysObj);
+		$pays = $this->getPaysParId($bdd, $idPays);
 
 		$filmHandler = new FilmHandler();
 		$films = $filmHandler->getFilmsPays($bdd, $idPays);
-		$pays = $paysInterface->addFilmsToView($pays, $films);
+		$pays->setFilms($films);
 
 		return $pays;
 	}
 
-	public function modifierPays($idPays, $datasPays)
+	public function getPaysParId($bdd, $idPays)
+	{
+		$paysRepository = new PaysRepository($bdd);
+		$datasPays = $paysRepository->getPaysParId($idPays);
+		$paysInterface = new PaysInterface();
+		$pays = $paysInterface->fromSqlToObject($datasPays[0]);
+
+		return $pays;
+	}
+
+	public function modifierPays( $idPays, $datasPays, $datasImage)
 	{
 		$bdd = new SPDO();
-		$pays = new Pays();
-		$pays->setId($idPays);
-		$paysRepository = new PaysRepository($bdd);
-		$paysRepository->getPaysParId($idPays);
-		if ($pays->getNomPays() != $datasPays['nomPays']) {
+
+		$paysExistant = $this->getPaysParId($bdd, $idPays);
+
+		if ($paysExistant->getNomPays() != $datasPays['nomPays']) {
 			$nouveauPays = new Pays();
 			$nouveauPays->setId($idPays);
 			$nouveauPays->setNompPays(cleanDonnee($datasPays['nomPays']));
-			$paysRepository->updatePays($pays);
+			$nouveauPays->setSlug(slugify($datasPays['nomPays']));
+			$paysRepository = new PaysRepository($bdd);
+			$paysRepository->updatePays($nouveauPays);
+		} else {
+			$nouveauPays = $paysExistant;
 		}
+		// Gestion image
+		$this->mettreAJourImage('pays', $paysExistant->getSlug(), $nouveauPays->getSlug(), $datasImage['imagePays']['name'], $datasImage	['imagePays']['tmp_name']);
 	}
 }

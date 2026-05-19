@@ -18,37 +18,36 @@ if (empty($_GET['id'])) {
     $idFilm = $_GET['id'];
     $filmHandler = new FilmHandler();
     $film = $filmHandler->getFilmAffichage($bdd, $idFilm);
-
 }
 ?>
 <div class="contenu_element film">
 	<div class="element_titre">
-		<h1><?php echo $film['titreFilm'];?></h1>
+		<h1><?php echo $film->getTitreFilm();?></h1>
 	</div>
 	<div class="element_details">
         <div class="element_detail_left">
-            <?php echo ($film['dateFilm'] != null ? formatDate($film['dateFilm']) : ""); ?>
+            <?php echo ($film->getDateFilm() != null ? formatDate($film->getDateFilm()) : ''); ?>
         </div>
         <div class="element_detail_right element_image">
             <?php
-                $adresseFichier = "public/images/pays/" . $film['pays']['id'] . ".png";
+                $adresseFichier = "public/images/pays/" . $film->getPays()->getSlug() . ".png";
                 if (file_exists($adresseFichier)) {
             ?>
             <img src = "<?php echo $adresseFichier; ?>" width="40" />
 
             <?php } else {
-                echo ($film['pays']['nomPays'] != null ? $film['pays']['nomPays'] : "");
+                echo ($film->getPays()->getNomPays() != null ? $film->getPays()->getNomPays() : "");
                 }
             ?>
         </div>
         <div class="element_detail_left ligne_2" style="width: 100%">
 
-        <p>Dan Trachtenberg</p>
+        <p>Nom du réalisateur</p>
         </div>
 	    </div>
-	<?php if ($film['titreFilmVO'] != null) { ?>
+	<?php if ($film->getTitreFilmVo() != null) { ?>
 	<div class="element_sous_titre">
-		<h3><?php echo $film['titreFilmVO'];?></h3>
+		<h3><?php echo $film->getTitreFilmVo();?></h3>
 	</div>
 	<?php }?>
 </div>

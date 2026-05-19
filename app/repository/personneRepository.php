@@ -18,8 +18,10 @@ class personneRepository extends elementrepository
 		if ($personne->getNomPersonne() != null) {
 			$requete = "INSERT INTO " . $this->getNomTable() . " ("
 				. "nomPersonne "
+				. ", slug "
 				. ") VALUES ("
 				. $this->bdd->quote($personne->getNomPersonne()) . " "
+				. ", " . $this->bdd->quote($personne->getSlug()) . " "
 				. ") "
 			;
 			$this->bdd->query($requete);

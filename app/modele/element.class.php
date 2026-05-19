@@ -4,6 +4,7 @@ class Element
 {
     private $dateAjout;
     private $dateModification;
+    private $slug;
 
 	public function __construct()
 	{
@@ -28,5 +29,15 @@ class Element
 	public function setDateModification($dateModification): void
 	{
 		$this->dateModification = $dateModification;
+	}
+
+	public function getSlug()
+	{
+		return $this->slug;
+	}
+
+	public function setSlug($slug): void
+	{
+		$this->slug = $slug;
 	}
 }

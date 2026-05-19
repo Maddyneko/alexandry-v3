@@ -5,5 +5,6 @@ CREATE TABLE pays_t (
     dateModification timestamp NULL DEFAULT NULL,
     nomPays varchar(255) NOT NULL,
     initialePays varchar(255) DEFAULT NULL,
+    slug varchar(255),
 	PRIMARY KEY (id)
 );

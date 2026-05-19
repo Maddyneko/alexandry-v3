@@ -1,6 +1,7 @@
 <?php
+require_once CHEMIN_DOSSIER . '/app/handler/elementHandler.php';
 
-class filmHandler {
+class filmHandler extends ElementHandler {
     public function creerFilmbase($bdd, $titreFilm, $titreFilmVo, $dateFilm, $idPays, $idRealisateur) {
         $idFilm = null;
 
@@ -9,7 +10,8 @@ class filmHandler {
 			$film->setTitreFilm($titreFilm);
 			$film->setTitreFilmVO($titreFilmVo);
 			$film->setDateFilm($dateFilm);
-
+			$slug = slugify($titreFilm . ($dateFilm != null ? "-" . substr($dateFilm, 6) : null));
+			$film->setSlug($slug);
 			$film->setIdPays($idPays);
 			$film->setIdRealisateur($idRealisateur);
 
@@ -40,9 +42,9 @@ class filmHandler {
 		$filmInterface = new FilmInterface();
 		$films = [];
 		foreach ($datasFilms as $datasFilm) {
-			$filmObj = $filmInterface->fromSqlToObject($datasFilm);
-			$films[] = $filmInterface->fromObjectToView($filmObj);
+			$films[] = $filmInterface->fromSqlToObject($datasFilm);
 		}
+
 		return $films;
 	}
 
@@ -60,12 +62,11 @@ class filmHandler {
 		$filmRepository = new FilmRepository($bdd);
 		$datasFilm = $filmRepository->getFilmParId($idFilm);
 		$filmInterface = new FilmInterface();
-		$filmObj = $filmInterface->fromSqlToObject($datasFilm[0]);
-		$film = $filmInterface->fromObjectToView($filmObj);
+		$film = $filmInterface->fromSqlToObject($datasFilm[0]);
 
 		$paysHandler = new PaysHandler();
-		$pays = $paysHandler->getPaysAffichage($bdd, $filmObj->getIdPays());
-		$film = $filmInterface->addPaysToView($film, $pays);
+		$pays = $paysHandler->getPaysAffichage($bdd, $film->getIdPays());
+		$film->setPays($pays);
 
 		return $film;
 	}

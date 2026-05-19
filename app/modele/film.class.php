@@ -9,6 +9,7 @@ class Film extends Element
 	private $titreFilm;
 	private $titreFilmVO;
 	private $dateFilm;
+	private $pays;
 
 	public function __construct()
 	{
@@ -73,6 +74,16 @@ class Film extends Element
 	public function setDateFilm($dateFilm): void
 	{
 		$this->dateFilm = $dateFilm;
+	}
+
+	public function getPays()
+	{
+		return $this->pays;
+	}
+
+	public function setPays($pays): void
+	{
+		$this->pays = $pays;
 	}
 
 

@@ -14,8 +14,8 @@ $payss = $paysHandler->getPayssAffichage($bdd);
 foreach ($payss as $pays) {?>
 	<div class="liste_element">
 		<div class="liste_element_panel">
-			<div class="liste_element_image" style="background-image: url('public/images/pays/<?php echo $pays['id'] ?>.png');"></div>
-			<a href="<?php echo NOM_DOMAINE; ?>/?type=pays&vue=element&id=<?php echo $pays['id'];?>"><?php echo $pays['nomPays'];?></a>
+			<div class="liste_element_image" style="background-image: url('public/images/pays/<?php echo $pays->getSlug(); ?>.png');"></div>
+			<a href="<?php echo NOM_DOMAINE; ?>/?type=pays&vue=element&id=<?php echo $pays->getId();?>"><?php echo $pays->getNomPays();?></a>
 		</div>
 	</div>
 <?php } ?>

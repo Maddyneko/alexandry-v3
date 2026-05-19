@@ -10,26 +10,8 @@ class FilmInterface
 		$film->setDateFilm($datasFilm['dateFilm']);
 		$film->setTitreFilmVO($datasFilm['titreFilmVO']);
 		$film->setIdPays($datasFilm['idPays']);
+		$film->setSlug($datasFilm['slug']);
 
 		return $film;
-
     }
-
-    public function fromObjectToView($film)
-    {
-        $filmView = [];
-		$filmView['id'] = $film->getId();
-		$filmView['titreFilm'] = $film->getTitreFilm();
-		$filmView['dateFilm'] = $film->getDateFilm();
-		$filmView['titreFilmVO'] = $film->getTitreFilmVO();
-
-		return $filmView;
-    }
-
-	public function addPaysToView($filmView, $pays)
-	{
-		$filmView['pays'] = $pays;
-
-		return $filmView;
-	}
 }

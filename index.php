@@ -28,7 +28,7 @@
                     <li class="onglet"><a><i class="fas fa-book-open"></i> Bds</a></li>
                 </ul>
                 <ul>
-                    <li class="onglet_admin"><a><i class="fa-solid fa-gears"></i></a></li>
+                    <li class="onglet_admin"><a href=<?php echo NOM_DOMAINE; ?>/app/scripts/import.php><i class="fa-solid fa-gears"></i></a></li>
                 </ul>
             </div>
         </nav>

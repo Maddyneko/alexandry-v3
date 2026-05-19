@@ -8,5 +8,6 @@ CREATE TABLE film_t (
     titreFilm varchar(255) NOT NULL,
     titreFilmVO varchar(255) DEFAULT NULL,
     dateFilm datetime DEFAULT NULL,
+    slug varchar(255),
 	PRIMARY KEY (id)
 );

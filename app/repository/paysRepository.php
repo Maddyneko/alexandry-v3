@@ -33,11 +33,13 @@ class paysRepository extends elementrepository
     public function insertPays($pays)
     {
 		$idPays = null;
-        if ($pays->getNomPays() != null) {
+        if ($pays->getNomPays() != null && $pays->getSlug() != null) {
             $requete = "INSERT INTO " . $this->getNomTable() . " ("
                 . "nomPays "
+                . ", slug"
                 . ") VALUES ("
                 . $this->bdd->quote($pays->getNomPays()) . " "
+				. ", " . $this->bdd->quote($pays->getSlug()) . " "
                 . ") "
                 ;
             $this->bdd->query($requete);
@@ -52,6 +54,7 @@ class paysRepository extends elementrepository
 		if ($pays->getId() != null && $pays->getNomPays() != null) {
 			$requete = "UPDATE " . $this->getNomTable() . " SET "
 				. "nomPays = " . $this->bdd->quote($pays->getNomPays()) . " "
+				. ", slug = " . $this->bdd->quote($pays->getSlug()) . " "
 				. "WHERE id = " . (int) $pays->getId()
 				;
 			$this->bdd->query($requete);

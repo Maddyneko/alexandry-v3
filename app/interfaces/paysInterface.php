@@ -10,6 +10,7 @@ class PaysInterface
         $pays->setDateAjout($datasPays['dateAjout']);
         $pays->setDateModification($datasPays['dateModification']);
         $pays->setInitialePays($datasPays['initialePays']);
+		$pays->setSlug($datasPays['slug']);
 
         return $pays;
     }
@@ -19,6 +20,7 @@ class PaysInterface
 		$paysView = [];
 		$paysView['id'] = $pays->getId();
 		$paysView['nomPays'] = $pays->getNomPays();
+		$paysView['slug'] = $pays->getSlug();
 
 		return $paysView;
 	}

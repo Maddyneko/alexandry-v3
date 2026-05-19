@@ -22,22 +22,22 @@ if (empty($_GET['id'])) {
 ?>
 <div class="contenu_element">
         <?php
-        $adresseFichier = "public/images/pays/" . $pays['id'] . ".png";
+        $adresseFichier = "public/images/pays/" . $pays->getSlug() . ".png";
         if (file_exists($adresseFichier)) { ?>
             <div class="element_image">
                 <img src = "<?php echo $adresseFichier; ?>" width="200" />
             </div>
         <?php } ?>
 	<div class="element_titre">
-		<h1><?php echo $pays['nomPays'];?></h1>
+		<h1><?php echo $pays->getNomPays();?></h1>
 	</div>
     <div class="sous_liste_elements">
-        <p>Films <span class="badge"><?php echo count($pays['films']); ?></span></p>
-        <?php foreach($pays['films'] as $film) { ?>
+        <p>Films <span class="badge"><?php echo count($pays->getFilms()); ?></span></p>
+        <?php foreach($pays->getFilms() as $film) { ?>
                 <div class="liste_element">
                     <div class="liste_element_panel">
-                        <div class="liste_element_image" style="background-image: url('public/images/film/<?php echo $film['id'] ?>.png');"></div>
-                        <a href="<?php echo NOM_DOMAINE; ?>/?type=film&vue=element&id=<?php echo $film['id'];?>"><?php echo $film['titreFilm'];?></a>
+                        <div class="liste_element_image" style="background-image: url('public/images/film/<?php echo $film->getSlug(); ?>.png');"></div>
+                        <a href="<?php echo NOM_DOMAINE; ?>/?type=film&vue=element&id=<?php echo $film->getId();?>"><?php echo $film->getTitreFilm();?></a>
                     </div>
                 </div>
         <?php } ?>
@@ -46,7 +46,7 @@ if (empty($_GET['id'])) {
 
 <div class="action_element">
 	<div class="bouton_action">
-		<a href="<?php echo NOM_DOMAINE; ?>/?type=pays&vue=edit&id=<?php echo $pays['id'];?>">
+		<a href="<?php echo NOM_DOMAINE; ?>/?type=pays&vue=edit&id=<?php echo $pays->getId();?>">
 			<i class="fas fa-pencil"></i>
 		</a>
 

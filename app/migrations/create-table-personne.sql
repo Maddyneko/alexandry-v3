@@ -4,5 +4,6 @@ CREATE TABLE personne_t (
     dateAjout timestamp NULL DEFAULT CURRENT_TIMESTAMP,
     dateModification timestamp NULL DEFAULT NULL,
     nomPersonne varchar(255) NOT NULL,
+    slug varchar(255),
 	PRIMARY KEY (id)
 );

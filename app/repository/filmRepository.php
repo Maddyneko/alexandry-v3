@@ -51,19 +51,21 @@ class filmRepository extends elementrepository
 	public function insertFilm($film)
 	{
 		$idFilm = null;
-		if ($film->getTitreFilm() != null) {
+		if ($film->getTitreFilm() != null && $film->getSlug() != null) {
 			$requete = "INSERT INTO " . $this->getNomTable() . " ("
 				. "titreFilm "
 				. ", idPays "
 				. ", idRealisateur "
 				. ($film->getTitreFilmVo() != null ? ", titreFilmVo " : "")
 				. ($film->getDateFilm() != null ? ", dateFilm " : "")
+				. ", slug "
 				. ") VALUES ("
 				. $this->bdd->quote($film->getTitreFilm()) . " "
 				. ", " . (int) $film->getIdPays()
 				. ", " . (int) $film->getIdRealisateur()
 				. ($film->getTitreFilmVo() != null ? "," . $this->bdd->quote($film->getTitreFilmVO()) . " " : "")
 				. ($film->getDateFilm() != null ? "," .  $this->bdd->quote(date('Y-m-d', strtotime($film->getDateFilm()))) . " " : "")
+				. ", " . $this->bdd->quote($film->getSlug()) . " "
 				. ") "
 			;
 			$this->bdd->query($requete);
