@@ -1,5 +1,7 @@
 <?php
     require_once('app/config/config.php');
+    require_once('app/tools/fichiers.php');
+
     require_once('app/tools/utils.php');
     require_once('app/tools/validation.php');
 

@@ -1,12 +1,10 @@
 <?php
 require_once CHEMIN_DOSSIER . '/app/handler/filmHandler.php';
 require_once CHEMIN_DOSSIER . '/app/handler/paysHandler.php';
-
 require_once CHEMIN_DOSSIER . '/app/interfaces/filmInterface.php';
 require_once CHEMIN_DOSSIER . '/app/interfaces/paysInterface.php';
 require_once CHEMIN_DOSSIER . '/app/modele/film.class.php';
 require_once CHEMIN_DOSSIER . '/app/modele/pays.class.php';
-
 require_once CHEMIN_DOSSIER . '/app/repository/filmRepository.php';
 require_once CHEMIN_DOSSIER . '/app/repository/paysRepository.php';
 
@@ -50,9 +48,8 @@ if (empty($_GET['id'])) {
 		<h3><?php echo $film->getTitreFilmVo();?></h3>
 	</div>
 	<?php }?>
-    <div>
-        allala
-        <?php echo getAdresseImage('film', $film->getSlug()); ?>
+    <div class="element_sous_rubrique">
+        
         <?php if (file_exists(getAdresseImage('film', $film->getSlug()))) { ?>
         <div class="element_image">
             <img src = "<?php echo getAdresseImage('film', $film->getSlug()); ?>" width="200" />

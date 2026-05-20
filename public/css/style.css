@@ -184,6 +184,12 @@ a {
 	font-weight: 400;
 }
 
+.film .element_sous_rubrique {
+	float:left;
+	width: 80%;
+	margin-top:25px;
+}
+
 .film .element_detail_left {
 	float: left;
 	width: 70%;

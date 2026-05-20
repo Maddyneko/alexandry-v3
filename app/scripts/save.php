@@ -34,7 +34,6 @@ if (empty($_GET['type']) || !estValideType($_GET['type'])) {
 
 				break;
 		}
-		 header('Location: ' . NOM_DOMAINE . "/?type=" . $type . "&vue=element&id=" . $id);
-
+		header('Location: ' . NOM_DOMAINE . "/?type=" . $type . "&vue=element&id=" . $id);
 	 }
 }
