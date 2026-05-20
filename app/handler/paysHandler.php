@@ -7,7 +7,7 @@ class PaysHandler extends ElementHandler {
         if ($nomPays !== null) {
             $pays = new Pays();
             $pays->setNompPays($nomPays);
-            $slug = slugify($nomPays);
+            $slug = $pays->makeSlug();
             $pays->setSlug($slug);
             $paysRepository = new PaysRepository($bdd);
             $idPays = $paysRepository->insertPays($pays);
@@ -60,13 +60,13 @@ class PaysHandler extends ElementHandler {
 			$nouveauPays = new Pays();
 			$nouveauPays->setId($idPays);
 			$nouveauPays->setNompPays(cleanDonnee($datasPays['nomPays']));
-			$nouveauPays->setSlug(slugify($datasPays['nomPays']));
+			$nouveauPays->setSlug($nouveauPays->makeSlug());
 			$paysRepository = new PaysRepository($bdd);
 			$paysRepository->updatePays($nouveauPays);
 		} else {
 			$nouveauPays = $paysExistant;
 		}
 		// Gestion image
-		$this->mettreAJourImage('pays', $paysExistant->getSlug(), $nouveauPays->getSlug(), $datasImage['imagePays']['name'], $datasImage	['imagePays']['tmp_name']);
+		$this->mettreAJourImage('pays', $paysExistant->getSlug(), $nouveauPays->getSlug(), $datasImage['imagePays']['name'], $datasImage['imagePays']['tmp_name']);
 	}
 }

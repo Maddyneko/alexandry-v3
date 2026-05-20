@@ -44,10 +44,28 @@ if (empty($_GET['id'])) {
 
         <p>Nom du réalisateur</p>
         </div>
-	    </div>
+    </div>
 	<?php if ($film->getTitreFilmVo() != null) { ?>
 	<div class="element_sous_titre">
 		<h3><?php echo $film->getTitreFilmVo();?></h3>
 	</div>
 	<?php }?>
+    <div>
+        allala
+        <?php echo getAdresseImage('film', $film->getSlug()); ?>
+        <?php if (file_exists(getAdresseImage('film', $film->getSlug()))) { ?>
+        <div class="element_image">
+            <img src = "<?php echo getAdresseImage('film', $film->getSlug()); ?>" width="200" />
+        </div>
+        <?php } ?>
+    </div>
+</div>
+
+<div class="action_element">
+    <div class="bouton_action">
+        <a href="<?php echo NOM_DOMAINE; ?>/?type=film&vue=edit&id=<?php echo $film->getId();?>">
+            <i class="fas fa-pencil"></i>
+        </a>
+
+    </div>
 </div>

@@ -33,14 +33,8 @@ class filmRepository extends elementrepository
 
 	public function selectFilmsDetail()
 	{
-		$paysRepository = new PaysRepository($this->bdd);
-		$personneRepository = new PersonneRepository($this->bdd);
-		$requete = "SELECT * "
+		$requete = "SELECT F.* "
 			."FROM " . $this->getNomTable() . " F "
-			. "LEFT JOIN " . $paysRepository->getNomTable() . " P "
-			. "ON F.idPays = P.id "
-			. "LEFT JOIN " . $personneRepository->getNomTable() . " PE "
-			. "ON F.idRealisateur = PE.id "
 			. ($this->order != null ? "ORDER BY " . $this->order : "")
 
 		;
@@ -82,5 +76,17 @@ class filmRepository extends elementrepository
 		;
 		$this->bdd->query($requete);
 
+	}
+
+	public function updateFilm($film)
+	{
+		if ($film->getId() != null && $film->getTitreFilm() != null) {
+			$requete = "UPDATE " . $this->getNomTable() . " SET "
+				. "titreFilm = " . $this->bdd->quote($film->getTitreFilm()) . " "
+				. ", slug = " . $this->bdd->quote($film->getSlug()) . " "
+				. "WHERE id = " . (int) $film->getId()
+			;
+			$this->bdd->query($requete);
+		}
 	}
 }

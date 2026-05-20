@@ -10,7 +10,7 @@ class filmHandler extends ElementHandler {
 			$film->setTitreFilm($titreFilm);
 			$film->setTitreFilmVO($titreFilmVo);
 			$film->setDateFilm($dateFilm);
-			$slug = slugify($titreFilm . ($dateFilm != null ? "-" . substr($dateFilm, 6) : null));
+			$slug = $film->makeSlug();
 			$film->setSlug($slug);
 			$film->setIdPays($idPays);
 			$film->setIdRealisateur($idRealisateur);
@@ -70,4 +70,23 @@ class filmHandler extends ElementHandler {
 
 		return $film;
 	}
+
+	public function modifierFilm($idFilm, $datasFilm, $datasImage)
+	{
+		$bdd = new SPDO();
+		$filmExistant = $this->getFilmAffichage($bdd, $idFilm);
+		if ($filmExistant->getTitreFilm() != $datasFilm['titreFilm']) {
+			$nouveauFilm = new Film();
+			$nouveauFilm->setId($idFilm);
+			$nouveauFilm->setTitreFilm($datasFilm['titreFilm']);
+			$nouveauFilm->setDateFilm($filmExistant->getDateFilm());
+			$nouveauFilm->setSlug($nouveauFilm->makeSlug());
+			$filmRepository = new FilmRepository($bdd);
+			$filmRepository->updateFilm($nouveauFilm);
+		} else {
+			$nouveauFilm = $filmExistant;
+		}
+		$this->mettreAJourImage('film', $filmExistant->getSlug(), $nouveauFilm->getSlug(), $datasImage['imageFilm']['name'], $datasImage['imageFilm']['tmp_name']);
+	}
+
 }

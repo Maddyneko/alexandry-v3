@@ -52,4 +52,14 @@ class Pays extends Element
 	{
 		$this->films = $films;
 	}
+
+	public function makeSlug()
+	{
+		$slug = null;
+		if ($this->nomPays != null) {
+			$slug = slugify($this->nomPays);
+		}
+
+		return $slug;
+	}
 }

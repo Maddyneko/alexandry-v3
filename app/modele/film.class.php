@@ -86,5 +86,15 @@ class Film extends Element
 		$this->pays = $pays;
 	}
 
+	public function makeSlug()
+	{
+		$slug = null;
+		if ($this->getTitreFilm() != null) {
+			$slug = slugify($this->getTitreFilm() . ($this->dateFilm != null ? "-" . substr($this->dateFilm, 6) : null));
+		}
+
+		return $slug;
+	}
+
 
 }
