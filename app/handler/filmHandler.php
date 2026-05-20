@@ -9,6 +9,13 @@ class filmHandler extends ElementHandler {
             $film = new Film();
 			$film->setTitreFilm($titreFilm);
 			$film->setTitreFilmVO($titreFilmVo);
+			if ($dateFilm != null) {
+				$jour = substr($dateFilm, 0, 2);
+				$mois = substr($dateFilm, 3, 2);
+				$annee = substr($dateFilm, 6);
+
+				$dateFilm = $annee . "-" . $mois . "-" . $jour;
+			}
 			$film->setDateFilm($dateFilm);
 			$slug = $film->makeSlug();
 			$film->setSlug($slug);

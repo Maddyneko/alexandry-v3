@@ -90,7 +90,7 @@ class Film extends Element
 	{
 		$slug = null;
 		if ($this->getTitreFilm() != null) {
-			$slug = slugify($this->getTitreFilm() . ($this->dateFilm != null ? "-" . substr($this->dateFilm, 6) : null));
+			$slug = slugify($this->getTitreFilm() . ($this->dateFilm != null ? "-" . substr($this->dateFilm, 0, 4) : null));
 		}
 
 		return $slug;
