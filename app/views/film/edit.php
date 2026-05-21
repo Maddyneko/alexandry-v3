@@ -33,8 +33,14 @@
                 <label for="titreFilmVo">Titre film Vo</label>
                 <input id="titreFilmVo" type="text" name="titreFilmVo" value="<?php echo $film->getTitreFilmVo();?>" />
             </div>
+            <div class="form_element">
+                <label for="dateFilm">Date de sortie</label>
+                <input id="dateFilm" type="date" name="dateFilm" value="<?php echo formatDate($film->getDateFilm(), 'Y-m-d');?>" />
+            </div>
 			<div class="form_element">
-				<input id="imageFilm" type="file" name="imageFilm" accept="image/png, image/jpeg" />
+                <label for="imageFilm">Affiche du film</label>
+
+                <input id="imageFilm" type="file" name="imageFilm" accept="image/png, image/jpeg" />
 			</div>
 			<input class="button" type="submit" value="Enregistrer" />
 		</form>
@@ -46,6 +52,9 @@
 			</div>
             <div class="element_titre">
                 <h3><?php echo $film->getTitreFilmVO();?></h3>
+            </div>
+            <div class="element_titre">
+                <p><?php echo formatDate($film->getDateFilm());?></p>
             </div>
 			<?php
 			$adresseFichier = "public/images/film/" . $film->getSlug() . ".png";

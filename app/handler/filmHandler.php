@@ -82,12 +82,15 @@ class filmHandler extends ElementHandler {
 	{
 		$bdd = new SPDO();
 		$filmExistant = $this->getFilmAffichage($bdd, $idFilm);
-		if ($filmExistant->getTitreFilm() != $datasFilm['titreFilm']) {
+		if ($filmExistant->getTitreFilm() != $datasFilm['titreFilm']
+			|| $filmExistant->getTitreFilmVO() != $datasFilm['titreFilmVo']
+			|| $filmExistant->getDateFilm() != $datasFilm['dateFilm']
+		) {
 			$nouveauFilm = new Film();
 			$nouveauFilm->setId($idFilm);
 			$nouveauFilm->setTitreFilm($datasFilm['titreFilm']);
 			$nouveauFilm->setTitreFilmVO($datasFilm['titreFilmVo']);
-			$nouveauFilm->setDateFilm($filmExistant->getDateFilm());
+			$nouveauFilm->setDateFilm($datasFilm['dateFilm']);
 			$nouveauFilm->setSlug($nouveauFilm->makeSlug());
 			$filmRepository = new FilmRepository($bdd);
 			$filmRepository->updateFilm($nouveauFilm);

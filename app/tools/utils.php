@@ -13,9 +13,9 @@ function debug($datas)
 	echo '</pre>';
 }
 
-function formatDate($dateSql)
+function formatDate($dateSql, $format = "d/m/Y")
 {
-	return date('d/m/Y', strtotime($dateSql));
+	return date($format, strtotime($dateSql));
 }
 
 function slugify($valeurASlugifier)

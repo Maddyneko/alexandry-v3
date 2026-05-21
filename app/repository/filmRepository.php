@@ -84,8 +84,10 @@ class filmRepository extends elementrepository
 			$requete = "UPDATE " . $this->getNomTable() . " SET "
 				. "titreFilm = " . $this->bdd->quote($film->getTitreFilm()) . " "
 				. ", slug = " . $this->bdd->quote($film->getSlug()) . " "
+				. ", dateFilm = " . $this->bdd->quote($film->getDateFilm()) . " "
 				. "WHERE id = " . (int) $film->getId()
 			;
+
 			$this->bdd->query($requete);
 		}
 	}
