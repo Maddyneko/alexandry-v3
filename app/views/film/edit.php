@@ -29,6 +29,10 @@
 				<label for="titreFilm">Titre film</label>
 				<input id="titreFilm" type="text" name="titreFilm" value="<?php echo $film->getTitreFilm();?>" />
 			</div>
+            <div class="form_element">
+                <label for="titreFilmVo">Titre film Vo</label>
+                <input id="titreFilmVo" type="text" name="titreFilmVo" value="<?php echo $film->getTitreFilmVo();?>" />
+            </div>
 			<div class="form_element">
 				<input id="imageFilm" type="file" name="imageFilm" accept="image/png, image/jpeg" />
 			</div>
@@ -40,6 +44,9 @@
 			<div class="element_titre">
 				<h1><?php echo $film->getTitreFilm();?></h1>
 			</div>
+            <div class="element_titre">
+                <h3><?php echo $film->getTitreFilmVO();?></h3>
+            </div>
 			<?php
 			$adresseFichier = "public/images/film/" . $film->getSlug() . ".png";
 			if (file_exists($adresseFichier)) { ?>

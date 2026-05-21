@@ -86,6 +86,7 @@ class filmHandler extends ElementHandler {
 			$nouveauFilm = new Film();
 			$nouveauFilm->setId($idFilm);
 			$nouveauFilm->setTitreFilm($datasFilm['titreFilm']);
+			$nouveauFilm->setTitreFilmVO($datasFilm['titreFilmVo']);
 			$nouveauFilm->setDateFilm($filmExistant->getDateFilm());
 			$nouveauFilm->setSlug($nouveauFilm->makeSlug());
 			$filmRepository = new FilmRepository($bdd);

@@ -45,7 +45,9 @@ if (empty($_GET['id'])) {
     </div>
 	<?php if ($film->getTitreFilmVo() != null) { ?>
 	<div class="element_sous_titre">
+        <?php if ($film->getTitreFilm() != $film->getTitreFilmVo() ) { ?>
 		<h3><?php echo $film->getTitreFilmVo();?></h3>
+        <?php } ?>
 	</div>
 	<?php }?>
     <div class="element_sous_rubrique">
