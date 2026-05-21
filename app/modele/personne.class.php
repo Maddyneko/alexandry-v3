@@ -25,4 +25,14 @@ class Personne extends Element
 	{
 		$this->nomPersonne = $nomPersonne;
 	}
+
+	public function makeSlug()
+	{
+		$slug = null;
+		if ($this->nomPersonne != null) {
+			$slug = slugify($this->nomPersonne);
+		}
+
+		return $slug;
+	}
 }

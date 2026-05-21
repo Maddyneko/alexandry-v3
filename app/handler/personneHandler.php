@@ -15,4 +15,17 @@ class PersonneHandler extends ElementHandler {
 
         return $idPersonne;
     }
+
+    public function getPersonnesAffichage($bdd)
+    {
+        $personneRepository = new PersonneRepository($bdd);
+        $datasPersonnes = $personneRepository->selectPersonnes();
+        $personneInterface = new personneInterface();
+        $personnes = [];
+        foreach ($datasPersonnes as $datasPersonne) {
+            $personnes[] = $personneInterface->fromSqlToObject($datasPersonne);
+        }
+
+        return $personnes;
+    }
 }
