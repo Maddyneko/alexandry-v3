@@ -82,18 +82,40 @@ class filmHandler extends ElementHandler {
 	{
 		$bdd = new SPDO();
 		$filmExistant = $this->getFilmAffichage($bdd, $idFilm);
-		if ($filmExistant->getTitreFilm() != $datasFilm['titreFilm']
-			|| $filmExistant->getTitreFilmVO() != $datasFilm['titreFilmVo']
-			|| $filmExistant->getDateFilm() != $datasFilm['dateFilm']
-		) {
-			$nouveauFilm = new Film();
-			$nouveauFilm->setId($idFilm);
+		if ($datasFilm['paysFilm'] != null) {
+			$paysRepository = new PaysRepository($bdd);
+			$pays = new Pays();
+			$pays->setNompPays($datasFilm['paysFilm']);
+			$nouveauPays = $paysRepository->getPaysParSlug($pays->makeSlug());
+			if ($nouveauPays->getId() == null) {
+				$paysHandler = new PaysHandler();
+				$datasFilm['idPays'] = $paysHandler->creerPaysBase($bdd, $datasFilm['paysFilm']);
+			} else {
+				$datasFilm['idPays'] = $nouveauPays->getId();
+			}
+		}
+		$nouveauFilm = new Film();
+		$nouveauFilm->setId($idFilm);
+
+		if ($filmExistant->getTitreFilm() != $datasFilm['titreFilm']) {
 			$nouveauFilm->setTitreFilm($datasFilm['titreFilm']);
+		}
+		if ($filmExistant->getTitreFilmVO() != $datasFilm['titreFilmVo']) {
 			$nouveauFilm->setTitreFilmVO($datasFilm['titreFilmVo']);
+		}
+		if ($filmExistant->getDateFilm() != $datasFilm['dateFilm']) {
 			$nouveauFilm->setDateFilm($datasFilm['dateFilm']);
-			$nouveauFilm->setSlug($nouveauFilm->makeSlug());
-			$filmRepository = new FilmRepository($bdd);
-			$filmRepository->updateFilm($nouveauFilm);
+		}
+
+		$nouveauFilm = new Film();
+		$nouveauFilm->setId($idFilm);
+		$nouveauFilm->setTitreFilm($datasFilm['titreFilm']);
+		$nouveauFilm->setTitreFilmVO($datasFilm['titreFilmVo']);
+		$nouveauFilm->setDateFilm($datasFilm['dateFilm']);
+		$nouveauFilm->setIdPays($datasFilm['idPays']);
+		$nouveauFilm->setSlug($nouveauFilm->makeSlug());
+		$filmRepository = new FilmRepository($bdd);
+		$filmRepository->updateFilm($nouveauFilm);
 		} else {
 			$nouveauFilm = $filmExistant;
 		}

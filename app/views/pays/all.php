@@ -4,9 +4,8 @@ require_once CHEMIN_DOSSIER . '/app/interfaces/paysInterface.php';
 require_once CHEMIN_DOSSIER . '/app/modele/pays.class.php';
 require_once CHEMIN_DOSSIER . '/app/repository/paysRepository.php';
 
-$bdd = new SPDO();
 $paysHandler = new PaysHandler();
-$payss = $paysHandler->getPayssAffichage($bdd);
+$payss = $paysHandler->getPayssAffichage();
 
 ?>
 

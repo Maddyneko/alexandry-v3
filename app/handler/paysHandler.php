@@ -16,8 +16,10 @@ class PaysHandler extends ElementHandler {
         return $idPays;
     }
 
-	public function getPayssAffichage($bdd)
+	public function getPayssAffichage()
 	{
+		$bdd = new SPDO();
+
 		$paysRepository = new PaysRepository($bdd);
 		$datasPayss = $paysRepository->selectPayss();
 		$paysInterface = new PaysInterface();

@@ -20,7 +20,13 @@ class paysRepository extends elementrepository
 		return $this->selectPays();
 	}
 
-    public function selectPays()
+	public function getPaysParSlug($slug)
+	{
+		$this->filtres = "AND slug = " . $this->bdd->quote($slug) . " ";
+		return $this->selectPays();
+	}
+	
+	public function selectPays()
     {
       return parent::selectElement();
     }

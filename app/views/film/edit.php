@@ -19,6 +19,9 @@
 		$idFilm = $_GET['id'];
 		$filmHandler = new FilmHandler();
 		$film = $filmHandler->getFilmAffichage($bdd, $idFilm);
+
+        $paysHandler = new PaysHandler();
+        $payss = $paysHandler->getPayssAffichage();
 	}
 ?>
 <div class="contenu_element">
@@ -37,9 +40,17 @@
                 <label for="dateFilm">Date de sortie</label>
                 <input id="dateFilm" type="date" name="dateFilm" value="<?php echo formatDate($film->getDateFilm(), 'Y-m-d');?>" />
             </div>
+            <div class="form_element">
+                <label for="paysFilm">Pays</label>
+                <input id="paysFilm" name="paysFilm" list="payss" value="<?php echo $film->getPays()->getNomPays();?>" />
+                <datalist id="payss">
+                    <?php foreach ($payss as $pays) { ?>
+                        <option><?php echo $pays->getNomPays(); ?></option>
+                    <?php } ?>
+                </datalist>
+            </div>
 			<div class="form_element">
                 <label for="imageFilm">Affiche du film</label>
-
                 <input id="imageFilm" type="file" name="imageFilm" accept="image/png, image/jpeg" />
 			</div>
 			<input class="button" type="submit" value="Enregistrer" />
