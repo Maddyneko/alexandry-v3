@@ -2,7 +2,11 @@
 
 function getAdresseImage($type, $slug)
 {
-    return "public/images/" . $type . "/" . $slug . ".png";
+    return CHEMIN_DOSSIER . "/public/images/" . $type . "/" . $slug . ".png";
+}
+function getAdresseImageAffichage($type, $slug)
+{
+	return "public/images/" . $type . "/" . $slug . ".png";
 }
 
 function existeImage($type, $slug)

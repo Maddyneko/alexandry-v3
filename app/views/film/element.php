@@ -52,9 +52,9 @@ if (empty($_GET['id'])) {
 	<?php }?>
     <div class="element_sous_rubrique">
         
-        <?php if (file_exists(getAdresseImage('film', $film->getSlug()))) { ?>
+        <?php if (file_exists(getAdresseImageAffichage('film', $film->getSlug()))) { ?>
         <div class="element_image">
-            <img src = "<?php echo getAdresseImage('film', $film->getSlug()); ?>" width="200" />
+            <img src = "<?php echo getAdresseImageAffichage('film', $film->getSlug()); ?>" width="200" />
         </div>
         <?php } ?>
     </div>

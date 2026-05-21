@@ -57,7 +57,7 @@
                 <p><?php echo formatDate($film->getDateFilm());?></p>
             </div>
 			<?php
-			$adresseFichier = "public/images/film/" . $film->getSlug() . ".png";
+			$adresseFichier = getAdresseImageAffichage('film', $film->getSlug());
 			if (file_exists($adresseFichier)) { ?>
 				<img src = <?php echo $adresseFichier; ?> width="100" />
 			<?php } ?>
