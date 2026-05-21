@@ -81,9 +81,7 @@ class filmRepository extends elementrepository
 	public function updateFilm($film)
 	{
 		if ($film->getId() != null) {
-			$requete = "UPDATE " . $this->getNomTable() . " SET "
-				. "titreFilm = " . $this->bdd->quote($film->getTitreFilm()) . " "
-				;
+			$requete = "UPDATE " . $this->getNomTable() . " SET ";
 			$elementsAModifier = null;
 			if ($film->getTitreFilm() != null) {
 				$elementsAModifier .= ($elementsAModifier == null ? "" : ", ") . "titreFilm = " . $this->bdd->quote($film->getTitreFilm()) . " ";
@@ -91,8 +89,11 @@ class filmRepository extends elementrepository
 			if ($film->getDateFilm() != null) {
 				$elementsAModifier .= ($elementsAModifier == null ? "" : ", ") . "dateFilm = " . $this->bdd->quote($film->getDateFilm()) . " ";
 			}
-			if ($film->getTitreFilm() != null || $film->getDateFilm() != null) {
+			if ($film->getSlug() != null) {
 				$elementsAModifier .= ($elementsAModifier == null ? "" : ", ") . "slug = " . $this->bdd->quote($film->getSlug()) . " ";
+			}
+			if ($film->getTitreFilmVO() != null) {
+				$elementsAModifier .= ($elementsAModifier == null ? "" : ", ") . "titreFilmVo = " . $this->bdd->quote($film->getTitreFilmVO()) . " ";
 			}
 			if ($film->getIdPays() != null) {
 				$elementsAModifier .= ($elementsAModifier == null ? "" : ", ") . "idPays = " . (int) $film->getIdPays() . " ";

@@ -72,7 +72,7 @@ class filmHandler extends ElementHandler {
 		$film = $filmInterface->fromSqlToObject($datasFilm[0]);
 
 		$paysHandler = new PaysHandler();
-		$pays = $paysHandler->getPaysAffichage($bdd, $film->getIdPays());
+		$pays = $paysHandler->getPaysParId($bdd, $film->getIdPays());
 		$film->setPays($pays);
 
 		return $film;
@@ -82,13 +82,13 @@ class filmHandler extends ElementHandler {
 	{
 		$bdd = new SPDO();
 		$filmExistant = $this->getFilmAffichage($bdd, $idFilm);
+		$datasFilm['idPays'] = null;
 		if ($datasFilm['paysFilm'] != null) {
-			$paysRepository = new PaysRepository($bdd);
+			$paysHandler = new PaysHandler($bdd);
 			$pays = new Pays();
 			$pays->setNompPays($datasFilm['paysFilm']);
-			$nouveauPays = $paysRepository->getPaysParSlug($pays->makeSlug());
+			$nouveauPays = $paysHandler->getPaysParSlug($pays->makeSlug());
 			if ($nouveauPays->getId() == null) {
-				$paysHandler = new PaysHandler();
 				$datasFilm['idPays'] = $paysHandler->creerPaysBase($bdd, $datasFilm['paysFilm']);
 			} else {
 				$datasFilm['idPays'] = $nouveauPays->getId();
@@ -106,20 +106,31 @@ class filmHandler extends ElementHandler {
 		if ($filmExistant->getDateFilm() != $datasFilm['dateFilm']) {
 			$nouveauFilm->setDateFilm($datasFilm['dateFilm']);
 		}
-
-		$nouveauFilm = new Film();
-		$nouveauFilm->setId($idFilm);
-		$nouveauFilm->setTitreFilm($datasFilm['titreFilm']);
-		$nouveauFilm->setTitreFilmVO($datasFilm['titreFilmVo']);
-		$nouveauFilm->setDateFilm($datasFilm['dateFilm']);
-		$nouveauFilm->setIdPays($datasFilm['idPays']);
-		$nouveauFilm->setSlug($nouveauFilm->makeSlug());
+		if ($filmExistant->getIdPays() != $datasFilm['idPays']) {
+			$nouveauFilm->setIdPays($datasFilm['idPays']);
+		}
+		$slug = $this->calculerModificationSlug($filmExistant, $nouveauFilm);
+		if ($filmExistant->getSlug() != $slug) {
+			$nouveauFilm->setSlug($slug);
+		}
 		$filmRepository = new FilmRepository($bdd);
 		$filmRepository->updateFilm($nouveauFilm);
-		} else {
-			$nouveauFilm = $filmExistant;
-		}
-		$this->mettreAJourImage('film', $filmExistant->getSlug(), $nouveauFilm->getSlug(), $datasImage['imageFilm']['name'], $datasImage['imageFilm']['tmp_name']);
+		
+		$this->mettreAJourImage('film', $filmExistant->getSlug(), $slug, $datasImage['imageFilm']['name'], $datasImage['imageFilm']['tmp_name']);
 	}
 
+	public function calculerModificationSlug($ancienFilm, $nouveauFilm)
+	{
+		$filmSlug = new Film();
+		$titreFilm = $nouveauFilm->getTitreFilm() != null ? $nouveauFilm->getTitreFilm() : $ancienFilm->getTitreFilm();
+		$filmSlug->setTitreFilm($titreFilm);
+		$dateFilm = $nouveauFilm->getDateFilm() != null ? $nouveauFilm->getDateFilm() : $ancienFilm->getDateFilm();
+		if ($dateFilm != null) {
+			$filmSlug->setDateFilm($dateFilm);
+		}
+		$slug = $filmSlug->makeSlug();
+
+
+		return $slug;
+	}
 }

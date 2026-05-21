@@ -66,7 +66,7 @@
                     <h3><?php echo $film->getTitreFilmVO();?></h3>
                 </div>
                 <div class="element_titre">
-                    <p><?php echo formatDate($film->getDateFilm());?></p>
+                    <p><?php echo $film->getDateFilm() != null ? formatDate($film->getDateFilm()) : null;?></p>
                 </div>
                 <?php
                 $adresseFichier = getAdresseImageAffichage('film', $film->getSlug());

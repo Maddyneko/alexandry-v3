@@ -52,6 +52,17 @@ class PaysHandler extends ElementHandler {
 		return $pays;
 	}
 
+	public function getPaysParSlug($slugPays)
+	{
+		$bdd = new SPDO();
+		$paysRepository = new PaysRepository($bdd);
+		$datasPays = $paysRepository->getPaysParSlug($slugPays);
+		$paysInterface = new PaysInterface();
+		$pays = $paysInterface->fromSqlToObject($datasPays[0]);
+
+		return $pays;
+	}
+
 	public function modifierPays( $idPays, $datasPays, $datasImage)
 	{
 		$bdd = new SPDO();
