@@ -46,21 +46,23 @@
 		</form>
 	</div>
 	<div class="contenu_apercu">
-		<div class="contenu_apercu_elements">
-			<div class="element_titre">
-				<h1><?php echo $film->getTitreFilm();?></h1>
-			</div>
-            <div class="element_titre">
-                <h3><?php echo $film->getTitreFilmVO();?></h3>
+        <a href="<?php echo NOM_DOMAINE; ?>/?type=film&vue=element&id=<?php echo $film->getId();?>">
+            <div class="contenu_apercu_elements">
+                <div class="element_titre">
+                    <h1><?php echo $film->getTitreFilm();?></h1>
+                </div>
+                <div class="element_titre">
+                    <h3><?php echo $film->getTitreFilmVO();?></h3>
+                </div>
+                <div class="element_titre">
+                    <p><?php echo formatDate($film->getDateFilm());?></p>
+                </div>
+                <?php
+                $adresseFichier = getAdresseImageAffichage('film', $film->getSlug());
+                if (file_exists($adresseFichier)) { ?>
+                    <img src = <?php echo $adresseFichier; ?> width="100" />
+                <?php } ?>
             </div>
-            <div class="element_titre">
-                <p><?php echo formatDate($film->getDateFilm());?></p>
-            </div>
-			<?php
-			$adresseFichier = getAdresseImageAffichage('film', $film->getSlug());
-			if (file_exists($adresseFichier)) { ?>
-				<img src = <?php echo $adresseFichier; ?> width="100" />
-			<?php } ?>
-		</div>
+        </a>
 	</div>
 </div>
