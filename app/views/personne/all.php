@@ -5,9 +5,8 @@ require_once CHEMIN_DOSSIER . '/app/modele/personne.class.php';
 
 require_once CHEMIN_DOSSIER . '/app/repository/personneRepository.php';
 
-$bdd = new SPDO();
 $personneHandler = new PersonneHandler();
-$personnes = $personneHandler->getPersonnesAffichage($bdd);
+$personnes = $personneHandler->getPersonnesAffichage();
 ?>
 <?php
 foreach ($personnes as $personne) {?>

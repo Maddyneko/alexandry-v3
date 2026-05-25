@@ -16,8 +16,9 @@ class PersonneHandler extends ElementHandler {
         return $idPersonne;
     }
 
-    public function getPersonnesAffichage($bdd)
+    public function getPersonnesAffichage()
     {
+		$bdd = new SPDO();
         $personneRepository = new PersonneRepository($bdd);
         $datasPersonnes = $personneRepository->selectPersonnes();
         $personneInterface = new personneInterface();
@@ -28,4 +29,15 @@ class PersonneHandler extends ElementHandler {
 
         return $personnes;
     }
+
+	public function getPersonneAffichage()
+	{
+		$bdd = new SPDO();
+		$personneRepository = new PersonneRepository($bdd);
+		$datasPersonne = $personneRepository->getPersonneParId($bdd);
+		$personneInterface = new personneInterface();
+		$personne = $personneInterface->fromSqlToObject($datasPersonne);
+
+		return $personne;
+	}
 }

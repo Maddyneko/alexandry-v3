@@ -8,6 +8,17 @@ class personneRepository extends elementrepository
         parent::__construct($bdd, 'personne_t', 'nomPersonne');
     }
 
+	public function getPersonneParId($id)
+	{
+		$this->filtres = "AND id = " . (int) $id . " ";
+		return $this->selectPersonne();
+	}
+
+	public function selectPersonne()
+	{
+		return parent::selectElement();
+	}
+
     public function selectPersonnes()
     {
         return parent::selectElements();
