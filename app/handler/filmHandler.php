@@ -41,7 +41,14 @@ class filmHandler extends ElementHandler {
 		$datasFilms = $filmRepository->getFilmsParIdPays($idPays);
 
 		return $this->miseEnFormeFilmAffichage($datasFilms);
+	}
 
+	public function getFilmsRealisateur($bdd, $idRealisateur)
+	{
+		$filmRepository = new FilmRepository($bdd);
+		$datasFilms = $filmRepository->getFilmsParIdRealisateur($idRealisateur);
+
+		return $this->miseEnFormeFilmAffichage($datasFilms);
 	}
 
 	public function miseEnFormeFilmAffichage($datasFilms)

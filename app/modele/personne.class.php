@@ -5,6 +5,8 @@ class Personne extends Element
 {
  	private $id;
 	private $nomPersonne;
+	private $films;
+
 
 	public function getId()
 	{
@@ -24,6 +26,16 @@ class Personne extends Element
 	public function setNomPersonne($nomPersonne): void
 	{
 		$this->nomPersonne = $nomPersonne;
+	}
+
+	public function getFilms()
+	{
+		return $this->films;
+	}
+
+	public function setFilms($films): void
+	{
+		$this->films = $films;
 	}
 
 	public function makeSlug()

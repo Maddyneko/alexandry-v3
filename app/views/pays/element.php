@@ -1,7 +1,6 @@
 <?php
 require_once CHEMIN_DOSSIER . '/app/handler/paysHandler.php';
 require_once CHEMIN_DOSSIER . '/app/handler/filmHandler.php';
-
 require_once CHEMIN_DOSSIER . '/app/interfaces/paysInterface.php';
 require_once CHEMIN_DOSSIER . '/app/interfaces/filmInterface.php';
 require_once CHEMIN_DOSSIER . '/app/modele/pays.class.php';

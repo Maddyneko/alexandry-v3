@@ -38,6 +38,11 @@ class PersonneHandler extends ElementHandler {
 		$personneInterface = new personneInterface();
 		$personne = $personneInterface->fromSqlToObject($datasPersonne[0]);
 
+
+        $filmHandler = new FilmHandler();
+        $films = $filmHandler->getFilmsRealisateur($bdd, $idPersonne);
+        $personne->setFilms($films);
+
 		return $personne;
 	}
 

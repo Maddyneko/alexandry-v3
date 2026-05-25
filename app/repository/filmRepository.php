@@ -15,6 +15,12 @@ class filmRepository extends elementrepository
 		return $this->selectFilms();
 	}
 
+	public function getFilmsParIdRealisateur($idRealisateur)
+	{
+		$this->filtres = "AND idRealisateur = " . (int) $idRealisateur . " ";
+		return $this->selectFilms();
+	}
+
 	public function getFilmParId($id)
 	{
 		$this->filtres = "AND id = " . (int) $id . " ";
