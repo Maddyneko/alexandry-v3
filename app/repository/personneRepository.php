@@ -42,4 +42,22 @@ class personneRepository extends elementrepository
 
 		return $idPersonne;
 	}
+
+	public function updatePersonne($personne)
+	{
+		if ($personne->getId() != null) {
+			$requete = "UPDATE " . $this->getNomTable() . " SET ";
+			$elementsAModifier = null;
+			if ($personne->getNomPersonne() != null) {
+				$elementsAModifier .= ($elementsAModifier == null ? "" : ", ") . "nomPersonne = " . $this->bdd->quote($personne->getNomPersonne()) . " ";
+			}
+			if ($personne->getSlug() != null) {
+				$elementsAModifier .= ($elementsAModifier == null ? "" : ", ") . "slug = " . $this->bdd->quote($personne->getSlug()) . " ";
+			}
+			if ($elementsAModifier != null) {
+				$requete .= $elementsAModifier . "WHERE id = " . (int) $personne->getId();
+				$this->bdd->query($requete);
+			}
+		}
+	}
 }

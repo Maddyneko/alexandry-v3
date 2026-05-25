@@ -2,7 +2,6 @@
 require_once CHEMIN_DOSSIER . '/app/handler/personneHandler.php';
 require_once CHEMIN_DOSSIER . '/app/interfaces/personneInterface.php';
 require_once CHEMIN_DOSSIER . '/app/modele/personne.class.php';
-
 require_once CHEMIN_DOSSIER . '/app/repository/personneRepository.php';
 
 $personneHandler = new PersonneHandler();

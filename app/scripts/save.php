@@ -6,12 +6,16 @@ require_once CHEMIN_DOSSIER . '/app/tools/fichiers.php';
 require_once CHEMIN_DOSSIER . '/app/tools/validation.php';
 require_once CHEMIN_DOSSIER . '/app/handler/filmHandler.php';
 require_once CHEMIN_DOSSIER . '/app/handler/paysHandler.php';
+require_once CHEMIN_DOSSIER . '/app/handler/personneHandler.php';
 require_once CHEMIN_DOSSIER . '/app/interfaces/filmInterface.php';
 require_once CHEMIN_DOSSIER . '/app/interfaces/paysInterface.php';
+require_once CHEMIN_DOSSIER . '/app/interfaces/personneInterface.php';
 require_once CHEMIN_DOSSIER . '/app/modele/film.class.php';
 require_once CHEMIN_DOSSIER . '/app/modele/pays.class.php';
+require_once CHEMIN_DOSSIER . '/app/modele/personne.class.php';
 require_once CHEMIN_DOSSIER . '/app/repository/filmRepository.php';
 require_once CHEMIN_DOSSIER . '/app/repository/paysRepository.php';
+require_once CHEMIN_DOSSIER . '/app/repository/personneRepository.php';
 
 
 if (empty($_GET['type']) || !estValideType($_GET['type'])) {
@@ -31,6 +35,11 @@ if (empty($_GET['type']) || !estValideType($_GET['type'])) {
 			case 'film':
 				$filmHandler = new FilmHandler();
 				$filmHandler->modifierFilm($id, $_POST, $_FILES);
+
+				break;
+			case 'personne':
+				$personneHandler = new PersonneHandler();
+				$personneHandler->modifierPersonne($id, $_POST, $_FILES);
 
 				break;
 		}

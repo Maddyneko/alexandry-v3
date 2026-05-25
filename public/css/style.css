@@ -165,12 +165,12 @@ a {
 	width: 100%;
 }
 
-.film .element_titre {
+.film .element_titre, .personne .element_titre {
 	width:80%;
 	float:left;
 }
 
-.film .element_details {
+.film .element_details, .personne .element_details {
 	float:left;
 	width: 20%;
 	text-align: right;
@@ -184,7 +184,7 @@ a {
 	font-weight: 400;
 }
 
-.film .element_sous_rubrique {
+.film .element_sous_rubrique, .personne .element_sous_rubrique {
 	float:left;
 	width: 80%;
 	margin-top:25px;

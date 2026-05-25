@@ -50,14 +50,13 @@ if (empty($_GET['id'])) {
         <?php } ?>
 	</div>
 	<?php }?>
-    <div class="element_sous_rubrique">
-        
-        <?php if (file_exists(getAdresseImageAffichage('film', $film->getSlug()))) { ?>
-        <div class="element_image">
-            <img src = "<?php echo getAdresseImageAffichage('film', $film->getSlug()); ?>" width="200" />
+        <div class="element_sous_rubrique">
+            <?php if (file_exists(getAdresseImageAffichage('film', $film->getSlug()))) { ?>
+            <div class="element_image">
+                <img src = "<?php echo getAdresseImageAffichage('film', $film->getSlug()); ?>" width="200" />
+            </div>
+            <?php } ?>
         </div>
-        <?php } ?>
-    </div>
 </div>
 
 <div class="action_element">
@@ -65,6 +64,5 @@ if (empty($_GET['id'])) {
         <a href="<?php echo NOM_DOMAINE; ?>/?type=film&vue=edit&id=<?php echo $film->getId();?>">
             <i class="fas fa-pencil"></i>
         </a>
-
     </div>
 </div>
