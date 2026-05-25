@@ -1,12 +1,19 @@
 <?php
 require_once CHEMIN_DOSSIER . '/app/handler/filmHandler.php';
 require_once CHEMIN_DOSSIER . '/app/handler/paysHandler.php';
+require_once CHEMIN_DOSSIER . '/app/handler/personneHandler.php';
+
 require_once CHEMIN_DOSSIER . '/app/interfaces/filmInterface.php';
 require_once CHEMIN_DOSSIER . '/app/interfaces/paysInterface.php';
+require_once CHEMIN_DOSSIER . '/app/interfaces/personneInterface.php';
+
 require_once CHEMIN_DOSSIER . '/app/modele/film.class.php';
 require_once CHEMIN_DOSSIER . '/app/modele/pays.class.php';
+require_once CHEMIN_DOSSIER . '/app/modele/personne.class.php';
+
 require_once CHEMIN_DOSSIER . '/app/repository/filmRepository.php';
 require_once CHEMIN_DOSSIER . '/app/repository/paysRepository.php';
+require_once CHEMIN_DOSSIER . '/app/repository/personneRepository.php';
 
 if (empty($_GET['id'])) {
     header('Location: ' . NOM_DOMAINE . "/?type=film");
@@ -39,8 +46,9 @@ if (empty($_GET['id'])) {
             ?>
         </div>
         <div class="element_detail_left ligne_2" style="width: 100%">
-
-        <p>Nom du réalisateur</p>
+        <?php if ($film->getIdRealisateur() != null) { ?>
+        <p><?php echo $film->getRealisateur()->getNomPersonne(); ?></p>
+        <?php } ?>
         </div>
     </div>
 	<?php if ($film->getTitreFilmVo() != null) { ?>

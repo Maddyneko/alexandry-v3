@@ -10,6 +10,7 @@ class FilmInterface
 		$film->setDateFilm($datasFilm['dateFilm']);
 		$film->setTitreFilmVO($datasFilm['titreFilmVO']);
 		$film->setIdPays($datasFilm['idPays']);
+		$film->setIdRealisateur($datasFilm['idRealisateur']);
 		$film->setSlug($datasFilm['slug']);
 
 		return $film;

@@ -10,6 +10,7 @@ class Film extends Element
 	private $titreFilmVO;
 	private $dateFilm;
 	private $pays;
+	private $realisateur;
 
 	public function __construct()
 	{
@@ -84,6 +85,16 @@ class Film extends Element
 	public function setPays($pays): void
 	{
 		$this->pays = $pays;
+	}
+
+	public function getRealisateur()
+	{
+		return $this->realisateur;
+	}
+
+	public function setRealisateur($realisateur): void
+	{
+		$this->realisateur = $realisateur;
 	}
 
 	public function makeSlug()
