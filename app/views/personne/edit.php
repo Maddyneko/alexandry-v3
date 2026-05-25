@@ -31,7 +31,7 @@ if (empty($_GET['id'])) {
 	</div>
 
 	<div class="contenu_apercu">
-		<a href="<?php echo NOM_DOMAINE; ?>/?type=personne&vue=element&id=<?php echo $personne->getId();?>">
+		<a href="<?php echo getUrlPersonne($personne->getId());?>">
 			<div class="contenu_apercu_elements">
 				<div class="element_titre">
 					<h1><?php echo $personne->getNomPersonne();?></h1>

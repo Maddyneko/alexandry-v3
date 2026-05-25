@@ -33,23 +33,27 @@ if (empty($_GET['id'])) {
         <div class="element_detail_left">
             <?php echo ($film->getDateFilm() != null ? formatDate($film->getDateFilm()) : ''); ?>
         </div>
-        <div class="element_detail_right element_image">
-            <?php
-                $adresseFichier = "public/images/pays/" . $film->getPays()->getSlug() . ".png";
-                if (file_exists($adresseFichier)) {
-            ?>
-            <img src = "<?php echo $adresseFichier; ?>" width="40" />
+        <a href="<?php echo getUrlPays($film->getIdPays());?>">
+            <div class="element_detail_right element_image">
+                <?php
+                    $adresseFichier = "public/images/pays/" . $film->getPays()->getSlug() . ".png";
+                    if (file_exists($adresseFichier)) {
+                ?>
+                <img src = "<?php echo $adresseFichier; ?>" width="40" />
 
-            <?php } else {
-                echo ($film->getPays()->getNomPays() != null ? $film->getPays()->getNomPays() : "");
-                }
-            ?>
-        </div>
-        <div class="element_detail_left ligne_2" style="width: 100%">
-        <?php if ($film->getIdRealisateur() != null) { ?>
-        <p><?php echo $film->getRealisateur()->getNomPersonne(); ?></p>
-        <?php } ?>
-        </div>
+                <?php } else {
+                    echo ($film->getPays()->getNomPays() != null ? $film->getPays()->getNomPays() : "");
+                    }
+                ?>
+            </div>
+        </a>
+        <a href="<?php echo getUrlPersonne($film->getIdRealisateur()); ?>">
+            <div class="element_detail_left ligne_2" style="width: 100%">
+            <?php if ($film->getIdRealisateur() != null) { ?>
+            <p><?php echo $film->getRealisateur()->getNomPersonne(); ?></p>
+            <?php } ?>
+            </div>
+        </a>
     </div>
 	<?php if ($film->getTitreFilmVo() != null) { ?>
 	<div class="element_sous_titre">

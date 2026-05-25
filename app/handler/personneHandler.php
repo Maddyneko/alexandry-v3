@@ -78,4 +78,19 @@ class PersonneHandler extends ElementHandler {
 
         return $slug;
     }
+
+    public function getPersonneParSlug($slugPersonne)
+    {
+        $bdd = new SPDO();
+        $personneRepository = new PersonneRepository($bdd);
+        $datasPersonne = $personneRepository->getPaysParSlug($slugPersonne);
+        if (!empty($datasPersonne)) {
+            $personneInterface = new PersonneInterface();
+            $personne = $personneInterface->fromSqlToObject($datasPersonne[0]);
+        } else {
+            $personne = null;
+        }
+
+        return $personne;
+    }
 }

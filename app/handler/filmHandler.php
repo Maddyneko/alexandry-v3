@@ -105,6 +105,18 @@ class filmHandler extends ElementHandler {
 				$datasFilm['idPays'] = $nouveauPays->getId();
 			}
 		}
+
+		if ($datasFilm['realisateurFilm'] != null) {
+			$personneHandler = new PersonneHandler($bdd);
+			$personne = new Personne();
+			$personne->setNomPersonne($datasFilm['realisateurFilm']);
+			$nouveauPersonne = $personneHandler->getPersonneParSlug($personne->makeSlug());
+			if ($nouveauPersonne == null) {
+				$datasFilm['idRealisateur'] = $personneHandler->creerPersonneBase($bdd, $datasFilm['realisateurFilm']);
+			} else {
+				$datasFilm['idRealisateur'] = $nouveauPersonne->getId();
+			}
+		}
 		$nouveauFilm = new Film();
 		$nouveauFilm->setId($idFilm);
 

@@ -36,7 +36,7 @@ if (empty($_GET['id'])) {
                 <div class="liste_element">
                     <div class="liste_element_panel">
                         <div class="liste_element_image" style="background-image: url('public/images/film/<?php echo $film->getSlug(); ?>.png');"></div>
-                        <a href="<?php echo NOM_DOMAINE; ?>/?type=film&vue=element&id=<?php echo $film->getId();?>"><?php echo $film->getTitreFilm();?></a>
+                        <a href="<?php echo getUrlFilm($film->getId());?>"><?php echo $film->getTitreFilm();?></a>
                     </div>
                 </div>
         <?php } ?>

@@ -11,6 +11,14 @@ class personneRepository extends elementrepository
 	public function getPersonneParId($id)
 	{
 		$this->filtres = "AND id = " . (int) $id . " ";
+		
+		return $this->selectPersonne();
+	}
+
+		public function getPaysParSlug($slug)
+	{
+		$this->filtres = "AND slug = " . $this->bdd->quote($slug) . " ";
+		
 		return $this->selectPersonne();
 	}
 

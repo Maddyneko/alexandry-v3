@@ -1,15 +1,19 @@
 <?php
-	require_once CHEMIN_DOSSIER . '/app/handler/filmHandler.php';
-	require_once CHEMIN_DOSSIER . '/app/handler/paysHandler.php';
+require_once CHEMIN_DOSSIER . '/app/handler/filmHandler.php';
+require_once CHEMIN_DOSSIER . '/app/handler/paysHandler.php';
+require_once CHEMIN_DOSSIER . '/app/handler/personneHandler.php';
 
-	require_once CHEMIN_DOSSIER . '/app/interfaces/filmInterface.php';
-	require_once CHEMIN_DOSSIER . '/app/interfaces/paysInterface.php';
+require_once CHEMIN_DOSSIER . '/app/interfaces/filmInterface.php';
+require_once CHEMIN_DOSSIER . '/app/interfaces/paysInterface.php';
+require_once CHEMIN_DOSSIER . '/app/interfaces/personneInterface.php';
 
-	require_once CHEMIN_DOSSIER . '/app/modele/film.class.php';
-	require_once CHEMIN_DOSSIER . '/app/modele/pays.class.php';
+require_once CHEMIN_DOSSIER . '/app/modele/film.class.php';
+require_once CHEMIN_DOSSIER . '/app/modele/pays.class.php';
+require_once CHEMIN_DOSSIER . '/app/modele/personne.class.php';
 
-	require_once CHEMIN_DOSSIER . '/app/repository/filmRepository.php';
-	require_once CHEMIN_DOSSIER . '/app/repository/paysRepository.php';
+require_once CHEMIN_DOSSIER . '/app/repository/filmRepository.php';
+require_once CHEMIN_DOSSIER . '/app/repository/paysRepository.php';
+require_once CHEMIN_DOSSIER . '/app/repository/personneRepository.php';
 
 	if (empty($_GET['id'])) {
 		header('Location: ' . NOM_DOMAINE . "/?type=film");
@@ -22,6 +26,9 @@
 
         $paysHandler = new PaysHandler();
         $payss = $paysHandler->getPayssAffichage();
+
+  		$personneHandler = new PersonneHandler();
+        $realisateurs = $personneHandler->getPersonnesAffichage();
 	}
 ?>
 <div class="contenu_element">
@@ -50,6 +57,15 @@
                 </datalist>
             </div>
 			<div class="form_element">
+                <label for="realisateurFilm">Réalisateur.ice</label>
+                <input id="realisateurFilm" name="realisateurFilm" list="realisateurs" value="<?php echo $film->getRealisateur()->getNomPersonne();?>" />
+                <datalist id="realisateurs">
+                    <?php foreach ($realisateurs as $realisateur) { ?>
+                        <option><?php echo $realisateur->getNomPersonne(); ?></option>
+                    <?php } ?>
+                </datalist>
+            </div>
+			<div class="form_element">
                 <label for="imageFilm">Affiche du film</label>
                 <input id="imageFilm" type="file" name="imageFilm" accept="image/png, image/jpeg" />
 			</div>
@@ -57,7 +73,7 @@
 		</form>
 	</div>
 	<div class="contenu_apercu">
-        <a href="<?php echo NOM_DOMAINE; ?>/?type=film&vue=element&id=<?php echo $film->getId();?>">
+        <a href="<?php echo getUrlFilm($film->getId());?>">
             <div class="contenu_apercu_elements">
                 <div class="element_titre">
                     <h1><?php echo $film->getTitreFilm();?></h1>
@@ -67,6 +83,9 @@
                 </div>
                 <div class="element_titre">
                     <p><?php echo $film->getDateFilm() != null ? formatDate($film->getDateFilm()) : null;?></p>
+                </div>
+                 <div class="element_titre">
+                    <p><?php echo $film->getRealisateur() != null ? $film->getRealisateur()->getNomPersonne() : null;?></p>
                 </div>
                 <?php
                 $adresseFichier = getAdresseImageAffichage('film', $film->getSlug());
