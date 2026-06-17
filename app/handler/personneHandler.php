@@ -43,6 +43,12 @@ class PersonneHandler extends ElementHandler {
         $films = $filmHandler->getFilmsRealisateur($bdd, $idPersonne);
         $personne->setFilms($films);
 
+		if ($personne->getIdPays() != null) {
+			$paysHandler = new PaysHandler();
+			$pays = $paysHandler->getPaysParId($bdd, $personne->getIdPays());
+			$personne->setPays($pays);
+		}
+
 		return $personne;
 	}
 

@@ -1,8 +1,8 @@
 <?php 
 
-function getUrlElement($type, $id)
+function getUrlElement($type, $id, $page = 'element')
 {
-	return NOM_DOMAINE . '?type=' . $type . '&vue=element&id='.  $id;
+	return NOM_DOMAINE . '?type=' . $type . '&vue=' . $page . '&id='.  $id;
 }
 
 function getUrlFilm($id)
@@ -18,4 +18,9 @@ function getUrlPersonne($id)
 function getUrlPays($id)
 {
 	return getUrlElement('pays', $id);
+}
+
+function getUrlEdit($type, $id)
+{
+	return getUrlElement($type, $id, 'edit');
 }

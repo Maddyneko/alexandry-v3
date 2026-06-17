@@ -4,7 +4,9 @@ require_once CHEMIN_DOSSIER . '/app/modele/element.class.php';
 class Personne extends Element
 {
  	private $id;
+	 private $idPays;
 	private $nomPersonne;
+	private $pays;
 	private $films;
 
 
@@ -18,6 +20,16 @@ class Personne extends Element
 		$this->id = $id;
 	}
 
+	public function getIdPays()
+	{
+		return $this->idPays;
+	}
+
+	public function setIdPays($idPays): void
+	{
+		$this->idPays = $idPays;
+	}
+
 	public function getNomPersonne()
 	{
 		return $this->nomPersonne;
@@ -26,6 +38,16 @@ class Personne extends Element
 	public function setNomPersonne($nomPersonne): void
 	{
 		$this->nomPersonne = $nomPersonne;
+	}
+
+	public function getPays()
+	{
+		return $this->pays;
+	}
+
+	public function setPays($pays): void
+	{
+		$this->pays = $pays;
 	}
 
 	public function getFilms()

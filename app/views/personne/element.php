@@ -48,7 +48,7 @@ if (empty($_GET['id'])) {
 
 <div class="action_element">
     <div class="bouton_action">
-        <a href="<?php echo getUrlPersonne($personne->getId());?>">
+        <a href="<?php echo getUrlEdit('personne', $personne->getId());?>">
             <i class="fas fa-pencil"></i>
         </a>
     </div>

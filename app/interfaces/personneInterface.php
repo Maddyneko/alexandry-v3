@@ -8,6 +8,7 @@ class PersonneInterface
         $personne->setId($datasPersonne['id']);
         $personne->setNomPersonne($datasPersonne['nomPersonne']);
 		$personne->setSlug($datasPersonne['slug']);
+		$personne->setIdPays($datasPersonne['idPays']);
 
         return $personne;
     }
