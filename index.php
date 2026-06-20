@@ -5,7 +5,7 @@
     require_once('app/tools/utils.php');
     require_once('app/tools/validation.php');
 
-    $type = $_GET['type'] ?? 'film';
+    $type = $_GET['type'] ?? 'statistiques';
     $vue = $_GET['vue'] ?? 'all';
 ?>
 <!DOCTYPE html>
