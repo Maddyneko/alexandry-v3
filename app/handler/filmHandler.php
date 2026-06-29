@@ -156,4 +156,30 @@ class filmHandler extends ElementHandler {
 
 		return $slug;
 	}
+
+	public function getNbFilmsParPays()
+	{
+		$bdd = new SPDO();
+		$filmRepository = new FilmRepository($bdd);
+		$datas = $filmRepository->getNbFilmsParPays();
+		$payss = [];
+		$totalFilms = 0;
+		$pourcentageCumuleFilms = 0;
+		foreach ($datas as $data) {
+			$totalFilms += $data['nbFilms'];
+		}
+		foreach ($datas as $data) {
+			$pourcentageFilm = round(($data['nbFilms'] / $totalFilms) * 100);
+			$pourcentageCumuleFilms += $pourcentageFilm;
+			$pays['idPays'] = $data['idPays'];
+			$pays['nbFilms'] = $data['nbFilms'];
+			$pays['nomPays'] = $data['nomPays'];
+			$pays['pourcentageFilms'] = $pourcentageFilm;
+			$pays['pourcentageCumuleFilms'] = $pourcentageCumuleFilms;
+
+			$payss[] = $pays;
+		}
+
+		return $payss;
+	}
 }

@@ -110,4 +110,16 @@ class filmRepository extends elementrepository
 			}
 		}
 	}
+
+	public function getNbFilmsParPays()
+	{
+		$requete = "SELECT F.idPays, count(1) as nbFilms , P.nomPays "
+			. "FROM alexandrie.film_t F "
+			. "INNER JOIN alexandrie.pays_t P on P.id = F.idPays "
+			. "GROUP BY F.idPays "
+			. "ORDER BY 2 desc "
+			;
+
+		return $this->bdd->qfetch($requete);
+	}
 }
